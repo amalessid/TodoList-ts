@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "./formSlice";
 import { useState } from "react";
+import { pushTodo } from "../TodoList/todoListSlice";
 import store from "../../store";
 
 function Form() {
@@ -9,6 +10,7 @@ function Form() {
 
   function handleClick() {
     dispatch(addTodo(todo));
+    dispatch(pushTodo(todo));
     console.log(store.getState());
   }
   return (
@@ -20,7 +22,6 @@ function Form() {
         onChange={(e) => setTodo({ ...todo, title: e.target.value.toString() })}
       />
       <input
-        type="text"
         className="bg-gray-200 ml-2 appearance-none border-2 border-gray-200 rounded  py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-white-500"
         value={todo.description}
         onChange={(e) => setTodo({ ...todo, description: e.target.value })}

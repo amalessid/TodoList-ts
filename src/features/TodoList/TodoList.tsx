@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import store from "../../store";
+import { RootState } from "../../store";
 
 function TodoList() {
-  const todoList = useSelector((store) => store.todoList);
+  const todoList = useSelector((store: RootState) => store.todoList);
 
   return (
     <div className="flex justify-center items-center">

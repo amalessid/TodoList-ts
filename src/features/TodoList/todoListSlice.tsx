@@ -1,24 +1,23 @@
-const initialTodoList = [{ title: "", description: "" }];
+import { TodoType } from "../../store";
+
+const initialTodoList = [{ title: "title todo1", description: "desc1" }];
 
 export default function todoListReducer(
   state = initialTodoList,
-  action: { type: string; payload: { title: ""; description: "" } }
+  action: { type: string; payload: TodoType }
 ) {
   switch (action.type) {
     case "action/pushTodo":
-      return [
-        ...state,
-        {
-          title: action.payload.title,
-          description: action.payload.description,
-        },
-      ];
+      return [...state, action.payload];
+
+    default:
+      return state;
   }
 }
 
-export function pushTodo(title: string, description: string) {
+export function pushTodo(todo: TodoType) {
   return {
     type: "action/pushTodo",
-    action: { title: title, description: description },
+    payload: todo,
   };
 }
